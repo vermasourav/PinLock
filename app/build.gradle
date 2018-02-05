@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    defaultConfig {
+        applicationId "com.verma.mobile.android.pinlock"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+ext {
+    supportLibraryVersion = '24.1.0'
+    junitVersion = '4.12'
+    espressoVersion = '3.0.1'
+    butterKnifeVersion = '8.8.1'
+    testRunnerVersion = '1.0.1'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
+    compile 'com.android.support:multidex:1.0.2'
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.andrognito.pinlockview:pinlockview:2.0.1'
+
+}
