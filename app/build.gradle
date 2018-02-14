@@ -25,7 +25,7 @@ android {
     }
 }
 ext {
-    supportLibraryVersion = '24.4.0'
+    supportLibraryVersion = '24.2.0'
     junitVersion = '4.12'
     espressoVersion = '3.0.1'
     butterKnifeVersion = '8.8.1'

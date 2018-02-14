@@ -7,9 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
@@ -23,14 +21,12 @@ public class LoginActivity extends AppCompatActivity {
     private IndicatorDots mIndicatorDots;
     private final static String TAG = LoginActivity.class.getSimpleName();
     private final static String TRUE_CODE = "123456";
-    private Animation fadeInAnimation;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-
 
         mPinLockView = (PinLockView) findViewById(R.id.pin_lock_view);
         mIndicatorDots = (IndicatorDots) findViewById(R.id.indicator_dots);
@@ -75,38 +71,16 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onPinButtonClick(final View pView) {
+                pView.getAnimation();
                 Log.d(TAG, "Pin changed, new length " );
-               doAnimation(pView);
+                if(pView==null){
+                    return;
+                }
+                Animation startFadeOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);
+                pView.startAnimation(startFadeOutAnimation);
 
             }
         });
     }
-    void doAnimation(final View pView){
-        if(pView==null){
-           return;
-            //pView.startAnimation(fadeInAnimation );
 
-        }
-         Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setDuration(1000);
-
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setStartOffset(1000);
-        fadeOut.setDuration(1000);
-
-        final AnimationSet animation = new AnimationSet(true);
-        //animation.addAnimation(fadeIn);
-        animation.addAnimation(fadeOut);
-
-        runOnUiThread(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                pView.setAnimation(animation);
-
-            }
-        }));
-
-
-
-    }
 }

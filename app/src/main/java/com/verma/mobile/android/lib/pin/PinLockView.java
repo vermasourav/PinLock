@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.andrognito.pinlockview.ResourceUtils;
+
 import com.verma.mobile.android.pinlock.R;
 
 public class PinLockView extends RecyclerView {
@@ -73,8 +74,6 @@ public class PinLockView extends RecyclerView {
                     if (mPinLockListener != null) {
                         mPinLockListener.onPinChange(mPin.length(), mPin);
                         mPinLockListener.onPinButtonClick(pView);
-
-
                     }
 
                 } else {
